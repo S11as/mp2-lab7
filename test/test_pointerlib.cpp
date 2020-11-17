@@ -1,9 +1,114 @@
-#include "MyVector.h"
+#include "TList.h"
 
 #include <gtest.h>
 
-TEST(TestSuite, can_build_and_run_sample_test)
+TEST(TestSuite, can_create_list)
 {
-    EXPECT_EQ(true, true);
+    ASSERT_NO_THROW(TList<int>c);
+}
+
+TEST(Stack, can_push_item_to_list)
+{
+    TList<int>c;
+    ASSERT_NO_THROW(c.InsFirst(1));
+}
+
+TEST(Stack, can_push_item_to_list_back)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsFirst(i);
+    }
+    ASSERT_NO_THROW(c.InsLast(1));
+}
+
+TEST(Stack, can_get_iterator)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsFirst(i);
+    }
+    ASSERT_NO_THROW(c.begin());
+}
+
+TEST(Stack, can_iterate_list)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+    TList<int>::iterator iter = c.begin();
+    for (int j = 0; j < 10; ++j) {
+        EXPECT_EQ(*iter, j);
+        iter++;
+    }
+}
+
+TEST(Stack, can_copy_list)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+
+    TList<int>b = c;
+    TList<int>::iterator iter = b.begin();
+    for (int j = 0; j < 10; ++j) {
+        EXPECT_EQ(*iter, j);
+        iter++;
+    }
+}
+
+TEST(Stack, default_list_is_empty)
+{
+    TList<int>c;
+    EXPECT_EQ(c.IsEmpty(), true);
+}
+
+TEST(Stack, can_delete_items)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+
+    for (int j = 0; j < 10; ++j) {
+        c.DelFirst();
+    }
+    EXPECT_EQ(c.IsEmpty(), true);
+}
+
+TEST(Stack, can_get_first_elem)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+    int data = c.GetFirst()->GetData();
+    EXPECT_EQ(data, 0);
+}
+
+TEST(Stack, can_get_last_elem)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+    int data = c.GetLast()->GetData();
+    EXPECT_EQ(data, 9);
+}
+
+TEST(Stack, can_get_list_with_multiplies_to_K)
+{
+    TList<int>c;
+    for (int i = 0; i < 10; ++i) {
+        c.InsLast(i);
+    }
+    TList<int>b = c.multiplesToK(2);
+    TList<int>::iterator i = b.begin();
+    while(b.end()!=i){
+        EXPECT_EQ(*i%2, 0);
+        i++;
+    }
 }
 
