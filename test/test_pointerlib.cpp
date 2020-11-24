@@ -7,13 +7,13 @@ TEST(TestSuite, can_create_list)
     ASSERT_NO_THROW(TList<int>c);
 }
 
-TEST(Stack, can_push_item_to_list)
+TEST(List, can_push_item_to_list)
 {
     TList<int>c;
     ASSERT_NO_THROW(c.InsFirst(1));
 }
 
-TEST(Stack, can_push_item_to_list_back)
+TEST(List, can_push_item_to_list_back)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -22,7 +22,7 @@ TEST(Stack, can_push_item_to_list_back)
     ASSERT_NO_THROW(c.InsLast(1));
 }
 
-TEST(Stack, can_get_iterator)
+TEST(List, can_get_iterator)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -31,7 +31,7 @@ TEST(Stack, can_get_iterator)
     ASSERT_NO_THROW(c.begin());
 }
 
-TEST(Stack, can_iterate_list)
+TEST(List, can_iterate_list)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -44,7 +44,7 @@ TEST(Stack, can_iterate_list)
     }
 }
 
-TEST(Stack, can_copy_list)
+TEST(List, can_copy_list)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -59,13 +59,13 @@ TEST(Stack, can_copy_list)
     }
 }
 
-TEST(Stack, default_list_is_empty)
+TEST(List, default_list_is_empty)
 {
     TList<int>c;
     EXPECT_EQ(c.IsEmpty(), true);
 }
 
-TEST(Stack, can_delete_items)
+TEST(List, can_delete_items)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -78,7 +78,7 @@ TEST(Stack, can_delete_items)
     EXPECT_EQ(c.IsEmpty(), true);
 }
 
-TEST(Stack, can_get_first_elem)
+TEST(List, can_get_first_elem)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -88,7 +88,7 @@ TEST(Stack, can_get_first_elem)
     EXPECT_EQ(data, 0);
 }
 
-TEST(Stack, can_get_last_elem)
+TEST(List, can_get_last_elem)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -98,7 +98,7 @@ TEST(Stack, can_get_last_elem)
     EXPECT_EQ(data, 9);
 }
 
-TEST(Stack, can_get_list_with_multiplies_to_K)
+TEST(List, can_get_list_with_multiplies_to_K)
 {
     TList<int>c;
     for (int i = 0; i < 10; ++i) {
@@ -106,7 +106,7 @@ TEST(Stack, can_get_list_with_multiplies_to_K)
     }
     TList<int>b = c.multiplesToK(2);
     TList<int>::iterator i = b.begin();
-    while(b.end()!=i){
+    while(i!=b.end()){
         EXPECT_EQ(*i%2, 0);
         i++;
     }

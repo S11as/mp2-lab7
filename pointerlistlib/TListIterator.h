@@ -12,16 +12,16 @@ class TListIterator {
 private:
     TListElem<T>* current;
 public:
-    typedef TListIterator<T> iterator;
-    T operator*(void);
-    void operator++(int);
-    bool operator==(TListIterator<T>& _iter);
-    bool operator!=(TListIterator<T>& _iter);
-    explicit TListIterator(TListElem<T>* elem);
 
+    T operator*(void);
+    TListIterator<T>& operator++(int);
+    TListIterator<T>& operator++();
+    bool operator==(const TListIterator<T>& _iter);
+    bool operator!=(const TListIterator<T>& _iter);
+
+    explicit TListIterator(TListElem<T>* elem);
     TListIterator(TListIterator<T> const &iterator);
     ~TListIterator() = default;
-
 };
 
 template<class T>
@@ -30,16 +30,23 @@ T TListIterator<T>::operator*() {
 }
 
 template<class T>
-void TListIterator<T>::operator++(int) {
+TListIterator<T>& TListIterator<T>::operator++(int) {
     this->current=this->current->GetNext();
+    return *this;
 }
 
 template<class T>
-bool TListIterator<T>::operator==(TListIterator<T> &_iter) {
+TListIterator<T>& TListIterator<T>::operator++() {
+    this->current=this->current->GetNext();
+    return *this;
+}
+
+template<class T>
+bool TListIterator<T>::operator==(const TListIterator<T> &_iter) {
     return this->current == _iter.current;
 }
 template<class T>
-bool TListIterator<T>::operator!=(TListIterator<T> &_iter) {
+bool TListIterator<T>::operator!=(const TListIterator<T> &_iter) {
     return this->current != _iter.current;
 }
 
