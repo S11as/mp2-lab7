@@ -144,6 +144,8 @@ TList<T>& TList<T>::operator =(TList<T>& _v)
     if(this == &_v)
         return *this;
 
+    this->count = _v.count;
+
     if(this->root != 0){
         TListElem<T>* prev = 0;
         while(this->root!=0){
@@ -293,7 +295,7 @@ TList<T> &TList<T>::load(const char *name) {
     int size;
     file >> size;
     auto* list = new TList();
-    file>>list;
+    file>>*list;
     file.close();
     return *list;
 }
